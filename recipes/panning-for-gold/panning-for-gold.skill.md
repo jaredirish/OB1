@@ -196,6 +196,7 @@ After writing the gold-found file, capture key results to Open Brain using the `
 3. **The overall synthesis** gets one summary thought with a link to the gold-found file path, tagged with `brain-dump`, `synthesis`.
 
 Example capture:
+
 ```
 capture_thought({
   "thought": "ACT NOW: [idea in strongest form]. Next actions: (1) ..., (2) ..., (3) ... Evidence: '[exact quote]'. From brain dump processed YYYY-MM-DD.",
