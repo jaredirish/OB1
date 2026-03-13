@@ -1,6 +1,6 @@
 # Panning for Gold
 
-*Brain Dump Processor for Open Brain*
+*Brain dump processor for Open Brain*
 
 Turn raw brain dumps, voice transcripts, and stream-of-consciousness notes into structured, evaluated thought inventories that get captured into Open Brain automatically. Every line gets examined. The gold is in the tangents.
 
@@ -30,22 +30,22 @@ No additional credentials needed for this recipe.
 ### 1. Create the skill directory
 
 ```bash
-mkdir -p ~/.claude/skills/brain-dump-processor
+mkdir -p ~/.claude/skills/panning-for-gold
 ```
 
 ### 2. Copy the skill file
 
-Copy `brain-dump-processor.skill.md` from this recipe into the directory you just created:
+Copy `panning-for-gold.skill.md` from this recipe into the directory you just created:
 
 ```bash
-cp brain-dump-processor.skill.md ~/.claude/skills/brain-dump-processor/SKILL.md
+cp panning-for-gold.skill.md ~/.claude/skills/panning-for-gold/SKILL.md
 ```
 
 If you downloaded this recipe from GitHub, adjust the source path accordingly.
 
 ### 3. Verify Claude Code picks up the skill
 
-Restart Claude Code (close and reopen, or start a new session). Claude Code automatically loads skills from `~/.claude/skills/` on startup. To verify, ask Claude Code: "What skills do you have loaded?" or simply say "process this" and confirm it references the Brain Dump Processor methodology.
+Restart Claude Code (close and reopen, or start a new session). Claude Code automatically loads skills from `~/.claude/skills/` on startup. To verify, ask Claude Code: "What skills do you have loaded?" or simply say "process this" and confirm it references the Panning for Gold methodology.
 
 ### 4. Prepare your brain dump
 
@@ -92,7 +92,7 @@ After processing, you will have:
 
 ### 7. (Optional) Adapt for your tool
 
-If you are not using Claude Code, the skill file works as a prompt template. Copy the content of `brain-dump-processor.skill.md` into your AI tool's system prompt or custom instructions. The core methodology works with any LLM that can read files and write output.
+If you are not using Claude Code, the skill file works as a prompt template. Copy the content of `panning-for-gold.skill.md` into your AI tool's system prompt or custom instructions. The core methodology works with any LLM that can read files and write output.
 
 ## Expected Outcome
 
