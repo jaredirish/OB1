@@ -8,6 +8,8 @@ Automatically capture evaluated ideas and session summaries to Open Brain when a
 
 Adds one capability to your AI coding tool: at session close, all ACT NOW items and a session summary are automatically stored in Open Brain via `capture_thought`. The next time any AI tool searches your Open Brain, these captures are findable by meaning.
 
+> **Note:** This is a behavioral protocol — a system prompt that guides your AI assistant to capture automatically when session-end conditions are met. It is not a background service, hook, or daemon.
+
 This is the companion to [Panning for Gold](../panning-for-gold/). Panning evaluates raw brain dumps into structured verdicts. Auto-Capture stores those verdicts in Open Brain so they persist across sessions and tools.
 
 Together they create the write side of a knowledge flywheel:
