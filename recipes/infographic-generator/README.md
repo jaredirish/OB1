@@ -129,7 +129,7 @@ This recipe connects to Open Brain in two ways:
 
 **As storage (write side):** Generated prompts can be captured back to Open Brain. This creates a searchable library of visual templates. "What infographic did I make for the deal structure?" returns the prompt, which can be regenerated or adapted for new content.
 
-Together with [Panning for Gold](../panning-for-gold/) and [Auto-Capture Protocol](../auto-capture/), this forms a complete capture-process-visualize flywheel (see [Issue #84](https://github.com/NateBJones-Projects/OB1/issues/84)).
+Together with [Panning for Gold](../panning-for-gold/) and Auto-Capture Protocol (PR [#42](https://github.com/NateBJones-Projects/OB1/pull/42)), this forms a complete capture-process-visualize flywheel (see [Issue #84](https://github.com/NateBJones-Projects/OB1/issues/84)).
 
 ## Troubleshooting
 

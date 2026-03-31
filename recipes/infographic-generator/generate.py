@@ -18,7 +18,6 @@ import sys
 import os
 import re
 import argparse
-import json
 from pathlib import Path
 
 # Use the skill's venv if available
@@ -82,41 +81,20 @@ def extract_prompts(md_path):
 
 def generate_image(client, model, prompt_data):
     """Generate a single infographic image."""
-    try:
-        response = client.models.generate_content(
-            model=model,
-            contents=prompt_data["prompt"],
-            config=types.GenerateContentConfig(
-                response_modalities=["IMAGE"],
-                image_config=types.ImageConfig(
-                    aspect_ratio=prompt_data["aspect_ratio"],
-                ),
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt_data["prompt"],
+        config=types.GenerateContentConfig(
+            response_modalities=["IMAGE"],
+            image_config=types.ImageConfig(
+                aspect_ratio=prompt_data["aspect_ratio"],
             ),
-        )
+        ),
+    )
 
-        for part in response.parts:
-            if part.inline_data:
-                return part.as_image()
-    except Exception as e:
-        print(f"  Generation error: {e}")
-        # Retry once
-        print("  Retrying...")
-        try:
-            response = client.models.generate_content(
-                model=model,
-                contents=prompt_data["prompt"],
-                config=types.GenerateContentConfig(
-                    response_modalities=["IMAGE"],
-                    image_config=types.ImageConfig(
-                        aspect_ratio=prompt_data["aspect_ratio"],
-                    ),
-                ),
-            )
-            for part in response.parts:
-                if part.inline_data:
-                    return part.as_image()
-        except Exception as retry_error:
-            print(f"  Retry failed: {retry_error}")
+    for part in response.parts:
+        if part.inline_data:
+            return part.as_image()
 
     return None
 
@@ -158,18 +136,20 @@ def main():
     results = []
     for i, p in enumerate(prompts):
         num = args.redo if args.redo else i + 1
-        total = len(prompts) if not args.redo else args.redo
-        print(f"\n[{num}/{total}] Generating: {p['title']}")
+        print(f"\n[{num}/{len(prompts)}] Generating: {p['title']}")
         print(f"  Aspect ratio: {p['aspect_ratio']}")
 
-        image = generate_image(client, model, p)
-        if image:
-            out_path = output_dir / p["filename"]
-            image.save(str(out_path))
-            print(f"  SAVED: {out_path}")
-            results.append({"file": p["filename"], "caption": p["title"], "path": str(out_path)})
-        else:
-            print(f"  FAILED: No image generated")
+        try:
+            image = generate_image(client, model, p)
+            if image:
+                out_path = output_dir / p["filename"]
+                image.save(str(out_path))
+                print(f"  SAVED: {out_path}")
+                results.append({"file": p["filename"], "caption": p["title"], "path": str(out_path)})
+            else:
+                print(f"  FAILED: No image in response")
+        except Exception as e:
+            print(f"  ERROR: {e}")
 
     # Print summary
     print(f"\n{'='*50}")
@@ -179,6 +159,7 @@ def main():
 
     # Output JSON manifest for the skill to consume
     if results:
+        import json
         manifest_path = output_dir / "_latest_generation.json"
         with open(manifest_path, "w") as f:
             json.dump(results, f, indent=2)
