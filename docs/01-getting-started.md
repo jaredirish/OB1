@@ -585,7 +585,6 @@ Get-Content supabase\functions\open-brain-mcp\index.ts -Head 1
 
 > [!CAUTION]
 > ❌ If you see `console.log("Hello from Functions!")` — the download didn't overwrite the starter file. Delete the folder, re-create it, and retry the download commands.
->
 > ✅ If you see `import "jsr:@supabase/functions-js/edge-runtime.d.ts";` — you're good.
 
 ![6.7](https://img.shields.io/badge/6.7-Deploy-555?style=for-the-badge&labelColor=1E88E5)
